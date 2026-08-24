@@ -19,7 +19,10 @@ export default function CleanContact({ isRevealed = true }) {
     setIsSubmitting(true);
 
     const phoneText = formData.phone ? formData.phone : 'Not Provided';
-    const preferredContactMethod = formData.preferEmail ? 'Direct Email Reply Requested' : 'WhatsApp / Cell Preferred';
+    const emailPrefText = formData.preferEmail ? 'Direct Email Reply Requested' : 'WhatsApp / Cell Preferred';
+
+    // Format message so all key details arrive in email notifications even if Apps Script only forwards `message`
+    const formattedMessage = `Service Needed: ${formData.service}\nPhone / WhatsApp: ${phoneText}\nContact Preference: ${emailPrefText}\n\nClient Message:\n${formData.message}`;
 
     const payload = {
       name: formData.name,
@@ -29,11 +32,11 @@ export default function CleanContact({ isRevealed = true }) {
       cell: phoneText,
       service: formData.service,
       preferEmail: formData.preferEmail ? 'Yes' : 'No',
-      preferredContact: preferredContactMethod,
-      contactPreference: preferredContactMethod,
-      Subject: `New Inquiry: ${formData.service} - ${formData.name}`,
-      subject: `New Inquiry: ${formData.service} - ${formData.name}`,
-      message: formData.message
+      preferredContact: emailPrefText,
+      contactPreference: emailPrefText,
+      Subject: `[Inquiry: ${formData.service}] ${formData.name}`,
+      subject: `[Inquiry: ${formData.service}] ${formData.name}`,
+      message: formattedMessage
     };
 
     try {
