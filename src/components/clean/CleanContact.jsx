@@ -18,14 +18,15 @@ export default function CleanContact({ isRevealed = true }) {
     e.preventDefault();
     setIsSubmitting(true);
 
+    const phoneText = formData.phone ? formData.phone : 'Not Provided (Email Preferred)';
     const emailPrefText = formData.preferEmail ? 'Direct Email Reply Requested' : 'WhatsApp / Cell Preferred';
-    const formattedMessage = `📌 [Requested Service: ${formData.service}]\n📞 [WhatsApp / Cell: ${formData.phone}]\n✉️ [Preferred Contact Method: ${emailPrefText}]\n\n${formData.message}`;
+    const formattedMessage = `📌 [Requested Service: ${formData.service}]\n📞 [WhatsApp / Cell: ${phoneText}]\n✉️ [Preferred Contact Method: ${emailPrefText}]\n\n${formData.message}`;
 
     const payload = {
       name: formData.name,
       email: formData.email,
-      phone: formData.phone,
-      whatsapp: formData.phone,
+      phone: phoneText,
+      whatsapp: phoneText,
       service: formData.service,
       preferEmail: formData.preferEmail ? 'Yes' : 'No',
       Subject: `New Inquiry: ${formData.service} - ${formData.name}`,
@@ -226,16 +227,18 @@ export default function CleanContact({ isRevealed = true }) {
                     </div>
                   </div>
 
-                  {/* Cell No / WhatsApp Number */}
+                  {/* Cell No / WhatsApp Number & Conditional Required Logic */}
                   <div className="space-y-2">
                     <div>
-                      <label className="text-xs font-mono text-slate-400 block mb-1.5 font-medium">Cell No / WhatsApp Number</label>
+                      <label className="text-xs font-mono text-slate-400 block mb-1.5 font-medium">
+                        Cell No / WhatsApp Number {formData.preferEmail && <span className="text-slate-500 font-normal">(Optional)</span>}
+                      </label>
                       <input
                         type="tel"
-                        required
+                        required={!formData.preferEmail}
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="+880 1700-000000"
+                        placeholder={formData.preferEmail ? "+880 1700-000000 (Optional)" : "+880 1700-000000"}
                         className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-500/30 focus:outline-none transition-all duration-300 font-mono"
                       />
                     </div>
@@ -265,7 +268,7 @@ export default function CleanContact({ isRevealed = true }) {
                       rows={4}
                       required
                       value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.message ? e.target.value : e.target.value })}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Briefly describe your project goals, scope, or timeline..."
                       className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-500/30 focus:outline-none transition-all duration-300 leading-relaxed"
                     />
