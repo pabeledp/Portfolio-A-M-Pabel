@@ -10,7 +10,7 @@ export default function CleanContact({ isRevealed = true }) {
   const serviceOptions = [
     { id: '3D Motion Graphics', label: '3D Motion Graphics' },
     { id: 'Commercial Video Editing', label: 'Commercial Video Editing' },
-    { id: 'Graphic Design', label: 'Graphic Design & Branding' },
+    { id: 'Graphic Design & Branding', label: 'Graphic Design & Branding' },
     { id: 'Vibe Coding Web App', label: 'Vibe Coding Web App' }
   ];
 
@@ -18,11 +18,15 @@ export default function CleanContact({ isRevealed = true }) {
     e.preventDefault();
     setIsSubmitting(true);
 
+    const formattedMessage = `📌 [Requested Service: ${formData.service}]\n\n${formData.message}`;
+
     const payload = {
       name: formData.name,
       email: formData.email,
       service: formData.service,
-      message: formData.message
+      Subject: `New Inquiry: ${formData.service} - ${formData.name}`,
+      subject: `New Inquiry: ${formData.service} - ${formData.name}`,
+      message: formattedMessage
     };
 
     try {
