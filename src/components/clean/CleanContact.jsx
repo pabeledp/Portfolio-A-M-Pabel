@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
 import { personalProfile } from '../../data/personalData';
-import { Phone, Mail, Send, CheckCircle2, MapPin, Loader2, Sparkles } from 'lucide-react';
+import { Phone, Mail, Send, CheckCircle2, MapPin, Loader2, Sparkles, ChevronDown, Check } from 'lucide-react';
 
 export default function CleanContact({ isRevealed = true }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', service: '3D Motion Graphics', message: '' });
-
-  const serviceOptions = [
-    { id: '3D Motion Graphics', label: '3D Motion Graphics' },
-    { id: 'Commercial Video Editing', label: 'Commercial Video Editing' },
-    { id: 'Graphic Design & Branding', label: 'Graphic Design & Branding' },
-    { id: 'Vibe Coding Web App', label: 'Vibe Coding Web App' }
-  ];
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    service: '3D Motion Graphics',
+    preferEmail: false,
+    message: ''
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const formattedMessage = `📌 [Requested Service: ${formData.service}]\n📞 [WhatsApp / Phone: ${formData.phone}]\n\n${formData.message}`;
+    const emailPrefText = formData.preferEmail ? 'Direct Email Reply Requested' : 'WhatsApp / Cell Preferred';
+    const formattedMessage = `📌 [Requested Service: ${formData.service}]\n📞 [WhatsApp / Cell: ${formData.phone}]\n✉️ [Preferred Contact Method: ${emailPrefText}]\n\n${formData.message}`;
 
     const payload = {
       name: formData.name,
@@ -26,6 +27,7 @@ export default function CleanContact({ isRevealed = true }) {
       phone: formData.phone,
       whatsapp: formData.phone,
       service: formData.service,
+      preferEmail: formData.preferEmail ? 'Yes' : 'No',
       Subject: `New Inquiry: ${formData.service} - ${formData.name}`,
       subject: `New Inquiry: ${formData.service} - ${formData.name}`,
       message: formattedMessage
@@ -42,11 +44,25 @@ export default function CleanContact({ isRevealed = true }) {
       });
 
       setFormSubmitted(true);
-      setFormData({ name: '', email: '', phone: '', service: '3D Motion Graphics', message: '' });
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        service: '3D Motion Graphics',
+        preferEmail: false,
+        message: ''
+      });
     } catch (error) {
       console.error('Submission error:', error);
       setFormSubmitted(true);
-      setFormData({ name: '', email: '', phone: '', service: '3D Motion Graphics', message: '' });
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        service: '3D Motion Graphics',
+        preferEmail: false,
+        message: ''
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -190,41 +206,57 @@ export default function CleanContact({ isRevealed = true }) {
                     </div>
                   </div>
 
+                  {/* Stylish Non-Flat Service Needed Dropdown */}
                   <div>
-                    <label className="text-xs font-mono text-slate-400 block mb-1.5 font-medium">Cell No / WhatsApp Number</label>
-                    <input
-                      type="tel"
-                      required
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="+880 1700-000000"
-                      className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-500/30 focus:outline-none transition-all duration-300 font-mono"
-                    />
+                    <label className="text-xs font-mono text-slate-400 block mb-1.5 font-medium">Select Service Needed</label>
+                    <div className="relative">
+                      <select
+                        value={formData.service}
+                        onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                        className="w-full px-4 py-3.5 rounded-xl bg-slate-950 border border-slate-800 text-cyan-300 text-sm font-semibold focus:border-cyan-400 focus:ring-1 focus:ring-cyan-500/30 focus:outline-none transition-all duration-300 appearance-none cursor-pointer pr-10 shadow-inner"
+                      >
+                        <option value="3D Motion Graphics" className="bg-slate-900 text-white py-2">3D Motion Graphics & Animation</option>
+                        <option value="Commercial Video Editing" className="bg-slate-900 text-white py-2">Commercial Video Editing & VFX</option>
+                        <option value="Graphic Design & Branding" className="bg-slate-900 text-white py-2">Graphic Design & Brand Identity</option>
+                        <option value="Vibe Coding Web App" className="bg-slate-900 text-white py-2">Vibe Coding Web Application</option>
+                      </select>
+                      <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-cyan-400">
+                        <ChevronDown className="w-4 h-4" />
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Interactive Service Selector Pills */}
+                  {/* Cell No / WhatsApp Number */}
                   <div className="space-y-2">
-                    <label className="text-xs font-mono text-slate-400 block font-medium">Select Service Needed</label>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {serviceOptions.map((srv) => {
-                        const isSelected = formData.service === srv.id;
-                        return (
-                          <button
-                            key={srv.id}
-                            type="button"
-                            onClick={() => setFormData({ ...formData, service: srv.id })}
-                            className={`px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all duration-300 flex items-center justify-between border cursor-pointer ${
-                              isSelected
-                                ? 'bg-cyan-500/15 border-cyan-500/60 text-cyan-300 shadow-[0_0_15px_rgba(0,243,255,0.15)]'
-                                : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-white hover:border-slate-700'
-                            }`}
-                          >
-                            <span className="truncate">{srv.label}</span>
-                            {isSelected && <span className="w-2 h-2 rounded-full bg-cyan-400 shrink-0 ml-1.5" />}
-                          </button>
-                        );
-                      })}
+                    <div>
+                      <label className="text-xs font-mono text-slate-400 block mb-1.5 font-medium">Cell No / WhatsApp Number</label>
+                      <input
+                        type="tel"
+                        required
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        placeholder="+880 1700-000000"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-500/30 focus:outline-none transition-all duration-300 font-mono"
+                      />
                     </div>
+
+                    {/* Preferred Direct Email Reply Checkbox */}
+                    <label className="flex items-center gap-2.5 cursor-pointer pt-1 group">
+                      <div className="relative flex items-center justify-center">
+                        <input
+                          type="checkbox"
+                          checked={formData.preferEmail}
+                          onChange={(e) => setFormData({ ...formData, preferEmail: e.target.checked })}
+                          className="sr-only peer"
+                        />
+                        <div className="w-4 h-4 rounded bg-slate-950 border border-slate-700 peer-checked:bg-cyan-500 peer-checked:border-cyan-400 transition-all flex items-center justify-center group-hover:border-cyan-500/50">
+                          {formData.preferEmail && <Check className="w-3 h-3 text-slate-950 stroke-[3]" />}
+                        </div>
+                      </div>
+                      <span className="text-xs text-slate-300 font-mono select-none group-hover:text-cyan-300 transition-colors">
+                        Prefer direct response via Email instead of WhatsApp
+                      </span>
+                    </label>
                   </div>
 
                   <div>
@@ -233,7 +265,7 @@ export default function CleanContact({ isRevealed = true }) {
                       rows={4}
                       required
                       value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.message ? e.target.value : e.target.value })}
                       placeholder="Briefly describe your project goals, scope, or timeline..."
                       className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-500/30 focus:outline-none transition-all duration-300 leading-relaxed"
                     />
