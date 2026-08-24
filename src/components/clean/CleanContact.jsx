@@ -18,20 +18,22 @@ export default function CleanContact({ isRevealed = true }) {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const phoneText = formData.phone ? formData.phone : 'Not Provided (Email Preferred)';
-    const emailPrefText = formData.preferEmail ? 'Direct Email Reply Requested' : 'WhatsApp / Cell Preferred';
-    const formattedMessage = `📌 [Requested Service: ${formData.service}]\n📞 [WhatsApp / Cell: ${phoneText}]\n✉️ [Preferred Contact Method: ${emailPrefText}]\n\n${formData.message}`;
+    const phoneText = formData.phone ? formData.phone : 'Not Provided';
+    const preferredContactMethod = formData.preferEmail ? 'Direct Email Reply Requested' : 'WhatsApp / Cell Preferred';
 
     const payload = {
       name: formData.name,
       email: formData.email,
       phone: phoneText,
       whatsapp: phoneText,
+      cell: phoneText,
       service: formData.service,
       preferEmail: formData.preferEmail ? 'Yes' : 'No',
+      preferredContact: preferredContactMethod,
+      contactPreference: preferredContactMethod,
       Subject: `New Inquiry: ${formData.service} - ${formData.name}`,
       subject: `New Inquiry: ${formData.service} - ${formData.name}`,
-      message: formattedMessage
+      message: formData.message
     };
 
     try {
