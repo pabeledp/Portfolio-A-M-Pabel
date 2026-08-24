@@ -5,7 +5,7 @@ import { Phone, Mail, Send, CheckCircle2, MapPin, Loader2, Sparkles } from 'luci
 export default function CleanContact({ isRevealed = true }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', service: '3D Motion Graphics', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', service: '3D Motion Graphics', message: '' });
 
   const serviceOptions = [
     { id: '3D Motion Graphics', label: '3D Motion Graphics' },
@@ -18,11 +18,13 @@ export default function CleanContact({ isRevealed = true }) {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const formattedMessage = `📌 [Requested Service: ${formData.service}]\n\n${formData.message}`;
+    const formattedMessage = `📌 [Requested Service: ${formData.service}]\n📞 [WhatsApp / Phone: ${formData.phone}]\n\n${formData.message}`;
 
     const payload = {
       name: formData.name,
       email: formData.email,
+      phone: formData.phone,
+      whatsapp: formData.phone,
       service: formData.service,
       Subject: `New Inquiry: ${formData.service} - ${formData.name}`,
       subject: `New Inquiry: ${formData.service} - ${formData.name}`,
@@ -40,11 +42,11 @@ export default function CleanContact({ isRevealed = true }) {
       });
 
       setFormSubmitted(true);
-      setFormData({ name: '', email: '', service: '3D Motion Graphics', message: '' });
+      setFormData({ name: '', email: '', phone: '', service: '3D Motion Graphics', message: '' });
     } catch (error) {
       console.error('Submission error:', error);
       setFormSubmitted(true);
-      setFormData({ name: '', email: '', service: '3D Motion Graphics', message: '' });
+      setFormData({ name: '', email: '', phone: '', service: '3D Motion Graphics', message: '' });
     } finally {
       setIsSubmitting(false);
     }
@@ -186,6 +188,18 @@ export default function CleanContact({ isRevealed = true }) {
                         className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-500/30 focus:outline-none transition-all duration-300"
                       />
                     </div>
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-mono text-slate-400 block mb-1.5 font-medium">Cell No / WhatsApp Number</label>
+                    <input
+                      type="tel"
+                      required
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      placeholder="+880 1700-000000"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:border-cyan-400 focus:ring-1 focus:ring-cyan-500/30 focus:outline-none transition-all duration-300 font-mono"
+                    />
                   </div>
 
                   {/* Interactive Service Selector Pills */}
