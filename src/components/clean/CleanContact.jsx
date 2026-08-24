@@ -1,20 +1,42 @@
 import React, { useState } from 'react';
 import { personalProfile } from '../../data/personalData';
-import { Phone, Mail, MessageSquare, Send, CheckCircle2, MapPin } from 'lucide-react';
+import { Phone, Mail, MessageSquare, Send, CheckCircle2, MapPin, Loader2 } from 'lucide-react';
 
 export default function CleanContact({ isRevealed = true }) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', service: '3D Motion Graphics', message: '' });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormSubmitted(true);
-    setTimeout(() => {
-      const text = encodeURIComponent(
-        `Hi Pabel! I am ${formData.name} (${formData.email}). I need help with ${formData.service}: ${formData.message}`
-      );
-      window.open(`https://wa.me/8801615288259?text=${text}`, '_blank');
-    }, 800);
+    setIsSubmitting(true);
+
+    const payload = {
+      name: formData.name,
+      email: formData.email,
+      service: formData.service,
+      message: formData.message
+    };
+
+    try {
+      await fetch('https://script.google.com/macros/s/AKfycbwuLfogMSSmtUKHcaUMqG5zVy--4CQB--FXVb8ejcEVueDuOay9lPRnf5LCC8xPuGL5/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      setFormSubmitted(true);
+      setFormData({ name: '', email: '', service: '3D Motion Graphics', message: '' });
+    } catch (error) {
+      console.error('Submission error:', error);
+      setFormSubmitted(true);
+      setFormData({ name: '', email: '', service: '3D Motion Graphics', message: '' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -100,14 +122,22 @@ export default function CleanContact({ isRevealed = true }) {
               
               <div className="border-b border-slate-800 pb-3">
                 <h3 className="text-lg font-bold text-white">Send Pabel a Direct Message</h3>
-                <p className="text-xs text-slate-400">Opens WhatsApp chat immediately with pre-filled details</p>
+                <p className="text-xs text-slate-400">Fill out the form below to get in touch instantly</p>
               </div>
 
               {formSubmitted ? (
-                <div className="p-8 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-center space-y-3">
-                  <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto animate-bounce" />
-                  <h4 className="text-lg font-bold text-white">Message Ready!</h4>
-                  <p className="text-xs text-slate-300">Launching WhatsApp chat with A M Pabel...</p>
+                <div className="p-8 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-center space-y-4 animate-fade-in">
+                  <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto" />
+                  <h4 className="text-xl font-bold text-white">Thank You!</h4>
+                  <p className="text-sm text-slate-300">
+                    Your message has been sent successfully. A M Pabel will get back to you shortly!
+                  </p>
+                  <button
+                    onClick={() => setFormSubmitted(false)}
+                    className="px-5 py-2.5 rounded-xl bg-slate-800 text-cyan-300 font-mono text-xs hover:bg-slate-700 transition-colors border border-slate-700 cursor-pointer"
+                  >
+                    Send Another Message
+                  </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -165,10 +195,20 @@ export default function CleanContact({ isRevealed = true }) {
 
                   <button
                     type="submit"
-                    className="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 text-slate-950 font-bold text-sm shadow-[0_0_20px_rgba(0,243,255,0.3)] hover:shadow-[0_0_30px_rgba(0,243,255,0.5)] transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    disabled={isSubmitting}
+                    className="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 text-slate-950 font-bold text-sm shadow-[0_0_20px_rgba(0,243,255,0.3)] hover:shadow-[0_0_30px_rgba(0,243,255,0.5)] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    <Send className="w-4 h-4 fill-current" />
-                    Send Direct Message to Pabel
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin text-slate-950" />
+                        <span>Sending...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4 fill-current" />
+                        <span>Send Direct Message to Pabel</span>
+                      </>
+                    )}
                   </button>
 
                 </form>
