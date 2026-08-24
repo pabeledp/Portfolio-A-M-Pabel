@@ -27,20 +27,45 @@ High-impact personal portfolio website for **A M Pabel** — Lead Designer, Moti
 - **📱 100% Responsive Architecture**: Mobile-first fluid design optimized for all screen sizes (iPhone, Samsung, iPad, Laptops, 4K Displays).
 - **🛸 Sticky Floating Glass Navbar**: Ultra-sleek floating rounded pill navbar with fixed top backdrop blur gradient shield.
 - **🚀 Infinite Brand Logo Marquee Ticker**: 60FPS seamless right-to-left scrolling client brand logo marquee.
+- **📬 Serverless Google Apps Script Contact Form**: Asynchronous `fetch` POST (`mode: 'no-cors'`) sending contact inquiries directly to Google Sheets & Email notifications.
 - **🏛️ Professional 4-Column Agency Footer**: Complete studio footer featuring brand navigation, direct contact cards, and FramEmpire developer credits.
 
 ---
 
-## 🛠️ Technology Stack
+## 🛠️ Technology Stack & Architecture (প্রযুক্তি ও স্ট্যাক বিবরণী)
 
-| Component | Technology |
-| :--- | :--- |
-| **Core Framework** | React 18 & Vite 5 |
-| **Styling & Design** | TailwindCSS v4 & Vanilla CSS Design Tokens |
-| **Icons** | Lucide React |
-| **Typography** | Creato Display & Plus Jakarta Sans |
-| **Build Tooling** | Vite ESBuild Bundler |
-| **Hosting & Deployment** | `portfolio.ampabel.com` |
+### 💻 1. Programming & Markup Languages
+* **JavaScript (ES6+ / JSX)**: Core language for React components, state management, modal portals (`createPortal`), and asynchronous API fetch handling.
+* **HTML5**: Standard semantic document structure, Open Graph protocol meta tags, and SEO tags.
+* **CSS3 / PostCSS**: Custom keyframes animations, smooth scrolling, scrollbar styling, glassmorphism backdrop blurs, and responsive media queries.
+* **Google Apps Script (JavaScript)**: Serverless backend web app endpoint receiving form payloads via POST (`mode: 'no-cors'`) and writing entries directly into Google Sheets while sending instant email notifications.
+
+### ⚡ 2. Core Frameworks & Libraries
+* **React 18** (`v18.3.1`): Frontend component UI library for building reactive, single-page application (SPA) architecture.
+* **Vite 5** (`v5.4.1`): Next-gen frontend build tool & ultra-fast development server with ESBuild.
+* **Tailwind CSS v4** (`v4.0.0`): Utility-first CSS framework providing dark-mode color tokens (`slate-950`, `cyan`, `blue`), flex/grid layouts, gradients, and custom animations.
+* **Lucide React** (`v0.344.0`): Vector UI icon suite (`Send`, `Phone`, `Mail`, `CheckCircle2`, `MapPin`, `Loader2`, `Sparkles`, `ChevronDown`, `Check`, etc.).
+
+### 🔌 3. Backend & External API Integrations
+* **Google Apps Script Web App API**: Real-time AJAX endpoint (`https://script.google.com/macros/s/.../exec`) handling background contact form submissions to Google Sheets & Email.
+* **Google Drive Video & Image Embed API**: Direct streaming of video previews & high-res thumbnails via Google Drive embed URLs (`drive.google.com/file/d/.../preview`).
+* **WhatsApp Direct Web API**: Direct messaging integration (`wa.me/8801615288259`).
+* **Google Fonts API**: `Plus Jakarta Sans` & `Hind Siliguri` web typography integration.
+
+---
+
+## 📋 Technology Summary Table
+
+| Component / Layer | Technology | Version | Description |
+| :--- | :--- | :--- | :--- |
+| **Frontend UI Framework** | React 18 & React DOM | `v18.3.1` | Single-Page Reactive Component UI |
+| **Build System & Dev Server** | Vite 5 | `v5.4.1` | ESBuild Lightning-Fast Development & Bundling |
+| **CSS Framework** | Tailwind CSS v4 | `v4.0.0` | Utility-First Responsive Styling & Dark Tokens |
+| **Icon Library** | Lucide React | `v0.344.0` | High-Quality Vector UI Icons |
+| **Backend Integration** | Google Apps Script API | Serverless | Background Contact Form & Google Sheets Data Ingestion |
+| **Media Delivery** | Google Drive Embed API | REST / CDN | High-Res Video & Thumbnail Streaming |
+| **Typography** | Google Fonts | Web | Plus Jakarta Sans & Hind Siliguri |
+| **Hosting & Domain** | Production Host | Live | `portfolio.ampabel.com` |
 
 ---
 
@@ -95,7 +120,7 @@ A M Pabel Portfolio/
 │   │       ├── CleanVibeCode.jsx             # Live Web App Showcase
 │   │       ├── ClientLogoTicker.jsx          # Infinite Marquee Ticker
 │   │       ├── MacCodeShowcase.jsx           # Real-Time AI Code Stream
-│   │       ├── CleanContact.jsx              # Direct WhatsApp Form
+│   │       ├── CleanContact.jsx              # Direct Apps Script & WhatsApp Form
 │   │       └── CleanFooter.jsx               # Agency Studio Footer
 │   ├── context/
 │   │   └── ThemeContext.jsx              # Theme Provider
