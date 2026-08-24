@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { personalProfile } from '../../data/personalData';
-import { Phone, Mail, MessageSquare, Send, CheckCircle2, MapPin, Loader2 } from 'lucide-react';
+import { Phone, Mail, Send, CheckCircle2, MapPin, Loader2 } from 'lucide-react';
 
 export default function CleanContact({ isRevealed = true }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -49,66 +49,93 @@ export default function CleanContact({ isRevealed = true }) {
       }`}
     >
       
-      <div className="relative rounded-3xl bg-slate-950/90 border border-cyan-500/30 p-6 md:p-12 overflow-hidden shadow-[0_0_40px_rgba(0,243,255,0.1)]">
+      <div className="relative rounded-3xl bg-slate-950/90 border border-slate-800 p-6 md:p-12 overflow-hidden">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
           
-          {/* Left Column: Direct Info */}
+          {/* Left Column: Information & Streamlined Contact Meta */}
           <div className="lg:col-span-5 space-y-6">
             
-            <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400 font-mono font-medium">
-              Get In Touch
-            </span>
-
-            <h2 className="text-3xl md:text-4xl font-black text-white">
-              Let's Discuss Your <br />
-              <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
-                Next Big Project
+            <div className="space-y-2">
+              <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400 font-mono">
+                Get In Touch
               </span>
-            </h2>
 
-            <p className="text-slate-300 text-sm font-light leading-relaxed">
-              Available for freelance projects, commercial video edits, 3D motion graphics, brand identity systems, and vibe-coded web applications.
+              <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight font-['Creato_Display',sans-serif]">
+                Let's Discuss Your <br />
+                <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+                  Next Big Project
+                </span>
+              </h2>
+            </div>
+
+            <p className="text-slate-400 text-sm font-light leading-relaxed">
+              Available for freelance projects, commercial media production, and digital brand development.
             </p>
 
-            {/* Direct Cards */}
-            <div className="space-y-3 pt-2">
+            {/* 2-Column Services Bulleted List */}
+            <div className="space-y-2 pt-1 border-t border-b border-slate-800/80 py-4">
+              <span className="text-[11px] font-mono text-slate-400 uppercase tracking-wider block font-semibold">
+                Available Capabilities
+              </span>
+              <div className="grid grid-cols-2 gap-2 text-xs font-mono text-slate-300">
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
+                  <span>3D Motion Graphics</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
+                  <span>Commercial Video Edits</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
+                  <span>Brand Identity Systems</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
+                  <span>Vibe-Coded Web Apps</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Streamlined Contact Info Blocks */}
+            <div className="space-y-3 pt-1">
               
               <a
                 href="https://wa.me/8801615288259"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-4 p-4 rounded-2xl bg-slate-900 border border-slate-800 hover:border-cyan-500/50 transition-all hover:translate-x-1 group shadow-sm"
+                className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 transition-all group"
               >
-                <div className="p-3 rounded-xl bg-emerald-500/10 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-colors shrink-0">
-                  <Phone className="w-5 h-5" />
+                <div className="p-2.5 rounded-xl bg-slate-800 text-cyan-400 group-hover:text-cyan-300 transition-colors shrink-0">
+                  <Phone className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="text-xs text-slate-400 font-mono">Direct WhatsApp & Mobile</div>
-                  <div className="text-sm font-bold text-white font-mono">{personalProfile.contact.phone}</div>
+                  <div className="text-[11px] text-slate-400 font-mono">WhatsApp & Mobile</div>
+                  <div className="text-sm font-semibold text-white font-mono">{personalProfile.contact.phone}</div>
                 </div>
               </a>
 
               <a
                 href={`mailto:${personalProfile.contact.email}`}
-                className="flex items-center gap-4 p-4 rounded-2xl bg-slate-900 border border-slate-800 hover:border-cyan-500/50 transition-all hover:translate-x-1 group shadow-sm"
+                className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 transition-all group"
               >
-                <div className="p-3 rounded-xl bg-cyan-500/10 text-cyan-400 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-colors shrink-0">
-                  <Mail className="w-5 h-5" />
+                <div className="p-2.5 rounded-xl bg-slate-800 text-cyan-400 group-hover:text-cyan-300 transition-colors shrink-0">
+                  <Mail className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="text-xs text-slate-400 font-mono">Email Address</div>
-                  <div className="text-sm font-bold text-white font-mono">{personalProfile.contact.email}</div>
+                  <div className="text-[11px] text-slate-400 font-mono">Email Address</div>
+                  <div className="text-sm font-semibold text-white font-mono">{personalProfile.contact.email}</div>
                 </div>
               </a>
 
-              <div className="flex items-center gap-4 p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm">
-                <div className="p-3 rounded-xl bg-purple-500/10 text-purple-400 shrink-0">
-                  <MapPin className="w-5 h-5" />
+              <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800">
+                <div className="p-2.5 rounded-xl bg-slate-800 text-cyan-400 shrink-0">
+                  <MapPin className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="text-xs text-slate-400 font-mono">Location</div>
-                  <div className="text-sm font-bold text-white">{personalProfile.location}</div>
+                  <div className="text-[11px] text-slate-400 font-mono">Location</div>
+                  <div className="text-sm font-semibold text-white">{personalProfile.location}</div>
                 </div>
               </div>
 
@@ -116,17 +143,17 @@ export default function CleanContact({ isRevealed = true }) {
 
           </div>
 
-          {/* Right Column: Direct Message Form */}
+          {/* Right Column: Standardized Contact Form UI */}
           <div className="lg:col-span-7">
-            <div className="p-6 md:p-8 rounded-2xl bg-slate-900 border border-slate-800 space-y-6 shadow-sm">
+            <div className="p-6 md:p-8 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-6">
               
               <div className="border-b border-slate-800 pb-3">
-                <h3 className="text-lg font-bold text-white">Send Pabel a Direct Message</h3>
+                <h3 className="text-lg font-bold text-white">Send A Direct Message</h3>
                 <p className="text-xs text-slate-400">Fill out the form below to get in touch instantly</p>
               </div>
 
               {formSubmitted ? (
-                <div className="p-8 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-center space-y-4 animate-fade-in">
+                <div className="p-8 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-4 animate-fade-in">
                   <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto" />
                   <h4 className="text-xl font-bold text-white">Thank You!</h4>
                   <p className="text-sm text-slate-300">
@@ -134,7 +161,7 @@ export default function CleanContact({ isRevealed = true }) {
                   </p>
                   <button
                     onClick={() => setFormSubmitted(false)}
-                    className="px-5 py-2.5 rounded-xl bg-slate-800 text-cyan-300 font-mono text-xs hover:bg-slate-700 transition-colors border border-slate-700 cursor-pointer"
+                    className="px-5 py-2.5 rounded-xl bg-slate-900 text-cyan-400 font-mono text-xs hover:bg-slate-800 transition-colors border border-slate-800 cursor-pointer"
                   >
                     Send Another Message
                   </button>
@@ -150,7 +177,7 @@ export default function CleanContact({ isRevealed = true }) {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="Alex Mercer"
-                        className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:border-cyan-500 focus:outline-none"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:border-cyan-500 focus:outline-none transition-colors"
                       />
                     </div>
 
@@ -162,7 +189,7 @@ export default function CleanContact({ isRevealed = true }) {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="alex@company.com"
-                        className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:border-cyan-500 focus:outline-none"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:border-cyan-500 focus:outline-none transition-colors"
                       />
                     </div>
                   </div>
@@ -172,7 +199,7 @@ export default function CleanContact({ isRevealed = true }) {
                     <select
                       value={formData.service}
                       onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-cyan-300 text-sm focus:border-cyan-500 focus:outline-none font-mono"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:border-cyan-500 focus:outline-none transition-colors"
                     >
                       <option value="3D Motion Graphics">3D Motion Graphics & Animation</option>
                       <option value="Commercial Video Editing">Commercial Video Editing & VFX</option>
@@ -189,14 +216,14 @@ export default function CleanContact({ isRevealed = true }) {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Briefly describe your project, goals, or timeline..."
-                      className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:border-cyan-500 focus:outline-none"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:border-cyan-500 focus:outline-none transition-colors"
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 text-slate-950 font-bold text-sm shadow-[0_0_20px_rgba(0,243,255,0.3)] hover:shadow-[0_0_30px_rgba(0,243,255,0.5)] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full py-3.5 px-6 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <>
@@ -206,7 +233,7 @@ export default function CleanContact({ isRevealed = true }) {
                     ) : (
                       <>
                         <Send className="w-4 h-4 fill-current" />
-                        <span>Send Direct Message to Pabel</span>
+                        <span>Send Direct Message</span>
                       </>
                     )}
                   </button>
