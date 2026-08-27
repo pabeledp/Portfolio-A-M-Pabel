@@ -25,7 +25,6 @@ const clientBrands = [
 export default function ClientLogoTicker() {
   const [isHovered, setIsHovered] = useState(false);
 
-  const dupBrandsRow1 = [...clientBrands, ...clientBrands, ...clientBrands];
   const dupBrandsRow2 = [...clientBrands.slice().reverse(), ...clientBrands.slice().reverse(), ...clientBrands.slice().reverse()];
   const dupBrandsRow3 = [...clientBrands.slice(4), ...clientBrands.slice(0, 4), ...clientBrands, ...clientBrands];
   const dupBrandsRow4 = [...clientBrands.slice(8).reverse(), ...clientBrands.slice(0, 8).reverse(), ...clientBrands];
@@ -60,18 +59,13 @@ export default function ClientLogoTicker() {
       className="py-14 border-y border-slate-800/60 bg-slate-950 relative overflow-hidden group/section"
     >
       
-      {/* Background 4-Line Animated Card Marquee Stream (12% Base Opacity -> 25% Hover with Subtle Ambient Blur) */}
+      {/* Background 3-Line Animated Card Marquee Stream (Top-most row removed; bottom 3 rows kept in exact position) */}
       <div 
-        className={`absolute inset-0 pointer-events-none transition-opacity duration-700 overflow-hidden flex flex-col justify-between py-2 gap-3 z-0 ticker-3d-mask filter blur-[1.5px] ${
+        className={`absolute inset-0 pointer-events-none transition-opacity duration-700 overflow-hidden flex flex-col justify-end pb-3 gap-3.5 z-0 ticker-3d-mask filter blur-[1.5px] ${
           isHovered ? 'opacity-25' : 'opacity-12'
         }`}
       >
         
-        {/* Row 1: Leftward Animated Card Stream */}
-        <div className="flex items-center gap-3 w-max animate-marquee-left whitespace-nowrap">
-          {dupBrandsRow1.map((b, idx) => renderBgCard(b, `r1-${idx}`, 'text-cyan-400'))}
-        </div>
-
         {/* Row 2: Rightward Animated Card Stream */}
         <div className="flex items-center gap-3 w-max animate-marquee-right whitespace-nowrap">
           {dupBrandsRow2.map((b, idx) => renderBgCard(b, `r2-${idx}`, 'text-purple-400'))}
