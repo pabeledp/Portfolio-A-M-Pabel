@@ -324,6 +324,32 @@ export const motionGraphicsVideos = [
     tags: ["3D Motion", "SSC 27 Motion", "After Effects"],
     client: "reThink.ac",
     year: "2027"
+  },
+  {
+    id: "m-3",
+    fileId: "1H2b_2r7vEBO54MGujRupdnXNYjE_EBTy",
+    title: "Rashed Bhai Online Private batch Promotional Motion Graphics",
+    subjectTag: "Banglay IELTS • Promotional Motion",
+    category: "motion-graphics",
+    thumbnail: "https://drive.google.com/thumbnail?id=1H2b_2r7vEBO54MGujRupdnXNYjE_EBTy&sz=w1000",
+    embedUrl: "https://drive.google.com/file/d/1H2b_2r7vEBO54MGujRupdnXNYjE_EBTy/preview",
+    description: "Promotional Motion Graphics animation engineered for Rashed Bhai Online Private batch by Banglay IELTS.",
+    tags: ["Motion Graphics", "Banglay IELTS", "Promotional Motion"],
+    client: "Banglay IELTS",
+    year: "2026"
+  },
+  {
+    id: "m-4",
+    fileId: "1jMEjmC6a5iqDtNeB4l1ymtzS3yjGwNU2",
+    title: "IELTS Expo Offer Promotional Motion Graphics",
+    subjectTag: "Banglay IELTS • Expo Offer Reel",
+    category: "motion-graphics",
+    thumbnail: "https://drive.google.com/thumbnail?id=1jMEjmC6a5iqDtNeB4l1ymtzS3yjGwNU2&sz=w1000",
+    embedUrl: "https://drive.google.com/file/d/1jMEjmC6a5iqDtNeB4l1ymtzS3yjGwNU2/preview",
+    description: "Expo motion graphics reel highlighting promotional offers for Banglay IELTS & Immigration Center.",
+    tags: ["Expo Motion", "Banglay IELTS", "Promotional Reel"],
+    client: "Banglay IELTS & Immigration Center",
+    year: "2026"
   }
 ];
 
