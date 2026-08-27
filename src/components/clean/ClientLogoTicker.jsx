@@ -57,7 +57,7 @@ export default function ClientLogoTicker() {
                   <div className="text-xs font-bold text-slate-200 font-mono flex items-center gap-2">
                     <span>{b.name}</span>
                     {b.active && (
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.9)]" />
+                      <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(0,243,255,0.9)]" />
                     )}
                   </div>
                   <span className="text-[10px] text-slate-400 font-mono">{b.tag}</span>
@@ -83,7 +83,7 @@ export default function ClientLogoTicker() {
                   <div className="text-xs font-bold text-slate-200 font-mono flex items-center gap-2">
                     <span>{b.name}</span>
                     {b.active && (
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.9)]" />
+                      <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(0,243,255,0.9)]" />
                     )}
                   </div>
                   <span className="text-[10px] text-slate-400 font-mono">{b.tag}</span>
@@ -135,7 +135,7 @@ export default function ClientLogoTicker() {
                   {brand.active && (
                     <span 
                       title="Active Ongoing Client Partner"
-                      className="w-2.5 h-2.5 rounded-full bg-emerald-400 shrink-0 shadow-[0_0_10px_rgba(52,211,153,0.9)] animate-pulse" 
+                      className="w-2.5 h-2.5 rounded-full bg-cyan-400 shrink-0 shadow-[0_0_10px_rgba(0,243,255,0.9)] animate-pulse" 
                     />
                   )}
                 </div>
