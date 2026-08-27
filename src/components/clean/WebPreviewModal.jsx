@@ -26,7 +26,7 @@ export default function WebPreviewModal({ website, isOpen, onClose }) {
     >
       <div 
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-5xl h-[88vh] rounded-3xl bg-slate-950 border border-cyan-500/40 overflow-hidden shadow-2xl flex flex-col justify-between"
+        className="relative w-full max-w-7xl h-[92vh] rounded-3xl bg-slate-950 border border-cyan-500/40 overflow-hidden shadow-2xl flex flex-col justify-between"
       >
         
         {/* Browser Top Bar */}
