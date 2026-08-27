@@ -215,11 +215,39 @@ export const graphicDesignProjects = [
 export const vibeCodingWebsites = [
   {
     id: "web-1",
+    title: "Education BD",
+    displayUrl: "www.education-bd.com",
+    url: "https://www.education-bd.com",
+    category: "Ed-Tech Consultancy Platform",
+    description: "Modern overseas study consultancy & educational platform for Education BD engineered with Vibe Coding.",
+    tags: ["React 18", "TailwindCSS", "Ed-Tech", "Vibe Coding"]
+  },
+  {
+    id: "web-2",
     title: "A M Pabel Portfolio",
-    displayUrl: "portfolio.ampabel.com",
+    displayUrl: "www.ampabel.com",
     url: "https://portfolio.ampabel.com",
     category: "Personal Studio Portfolio",
+    description: "High-impact 3D motion graphics, video editing & vibe-coded personal portfolio web application.",
     tags: ["Vite", "React 18", "TailwindCSS", "Vibe Coding"]
+  },
+  {
+    id: "web-3",
+    title: "FramEmpire Verse 3D",
+    displayUrl: "verse.framempire.com",
+    url: "https://verse.framempire.com",
+    category: "3D WebGL Metaverse Environment",
+    description: "Immersive interactive 3D web experience engineered for FramEmpire Verse using Three.js & Vibe Coding.",
+    tags: ["Three.js", "WebGL", "3D Metaverse", "Vibe Coding"]
+  },
+  {
+    id: "web-4",
+    title: "FramEmpire Studio",
+    displayUrl: "framempire.com",
+    url: "https://framempire.com",
+    category: "Digital Media & Agency Studio",
+    description: "Official agency web platform for FramEmpire Studio engineered with AI Vibe Coding.",
+    tags: ["Next.js", "React 18", "Agency Studio", "Vibe Coding"]
   }
 ];
 
