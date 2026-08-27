@@ -24,8 +24,34 @@ const clientBrands = [
 
 export default function ClientLogoTicker() {
   const [isHovered, setIsHovered] = useState(false);
+
   const dupBrandsRow1 = [...clientBrands, ...clientBrands, ...clientBrands];
   const dupBrandsRow2 = [...clientBrands.slice().reverse(), ...clientBrands.slice().reverse(), ...clientBrands.slice().reverse()];
+  const dupBrandsRow3 = [...clientBrands.slice(4), ...clientBrands.slice(0, 4), ...clientBrands, ...clientBrands];
+  const dupBrandsRow4 = [...clientBrands.slice(8).reverse(), ...clientBrands.slice(0, 8).reverse(), ...clientBrands];
+
+  const renderBgCard = (b, idx, colorClass) => {
+    const IconComp = b.icon;
+    return (
+      <div 
+        key={`bg-card-${idx}`} 
+        className="flex items-center gap-3 px-3.5 py-2 rounded-2xl bg-slate-900/50 border border-slate-800/50 backdrop-blur-sm shrink-0"
+      >
+        <div className={`p-1.5 rounded-xl bg-slate-950 border border-slate-800 ${colorClass}`}>
+          <IconComp className="w-3.5 h-3.5" />
+        </div>
+        <div className="text-left">
+          <div className="text-xs font-bold text-slate-300 font-mono flex items-center gap-1.5">
+            <span>{b.name}</span>
+            {b.active && (
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(0,243,255,0.8)]" />
+            )}
+          </div>
+          <span className="text-[9.5px] text-slate-400 font-mono">{b.tag}</span>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <section 
@@ -34,63 +60,31 @@ export default function ClientLogoTicker() {
       className="py-14 border-y border-slate-800/60 bg-slate-950 relative overflow-hidden group/section"
     >
       
-      {/* Background Animated Card Marquee Stream (Slow & Smooth, Visible 25% Base -> 50% Hover) */}
+      {/* Background 4-Line Animated Card Marquee Stream (12% Base Opacity -> 25% Hover with Subtle Ambient Blur) */}
       <div 
-        className={`absolute inset-0 pointer-events-none transition-opacity duration-700 overflow-hidden flex flex-col justify-center gap-5 z-0 ticker-3d-mask ${
-          isHovered ? 'opacity-50' : 'opacity-25'
+        className={`absolute inset-0 pointer-events-none transition-opacity duration-700 overflow-hidden flex flex-col justify-between py-2 gap-3 z-0 ticker-3d-mask filter blur-[1.5px] ${
+          isHovered ? 'opacity-25' : 'opacity-12'
         }`}
       >
         
         {/* Row 1: Leftward Animated Card Stream */}
-        <div className="flex items-center gap-4 w-max animate-marquee-left whitespace-nowrap">
-          {dupBrandsRow1.map((b, idx) => {
-            const IconComp = b.icon;
-            return (
-              <div 
-                key={`bg-card-1-${idx}`} 
-                className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-slate-900/60 border border-slate-800/60 backdrop-blur-sm shrink-0"
-              >
-                <div className="p-2 rounded-xl bg-slate-950 border border-slate-800 text-cyan-400">
-                  <IconComp className="w-4 h-4" />
-                </div>
-                <div className="text-left">
-                  <div className="text-xs font-bold text-slate-200 font-mono flex items-center gap-2">
-                    <span>{b.name}</span>
-                    {b.active && (
-                      <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(0,243,255,0.9)]" />
-                    )}
-                  </div>
-                  <span className="text-[10px] text-slate-400 font-mono">{b.tag}</span>
-                </div>
-              </div>
-            );
-          })}
+        <div className="flex items-center gap-3 w-max animate-marquee-left whitespace-nowrap">
+          {dupBrandsRow1.map((b, idx) => renderBgCard(b, `r1-${idx}`, 'text-cyan-400'))}
         </div>
 
         {/* Row 2: Rightward Animated Card Stream */}
-        <div className="flex items-center gap-4 w-max animate-marquee-right whitespace-nowrap">
-          {dupBrandsRow2.map((b, idx) => {
-            const IconComp = b.icon;
-            return (
-              <div 
-                key={`bg-card-2-${idx}`} 
-                className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-slate-900/60 border border-slate-800/60 backdrop-blur-sm shrink-0"
-              >
-                <div className="p-2 rounded-xl bg-slate-950 border border-slate-800 text-purple-400">
-                  <IconComp className="w-4 h-4" />
-                </div>
-                <div className="text-left">
-                  <div className="text-xs font-bold text-slate-200 font-mono flex items-center gap-2">
-                    <span>{b.name}</span>
-                    {b.active && (
-                      <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(0,243,255,0.9)]" />
-                    )}
-                  </div>
-                  <span className="text-[10px] text-slate-400 font-mono">{b.tag}</span>
-                </div>
-              </div>
-            );
-          })}
+        <div className="flex items-center gap-3 w-max animate-marquee-right whitespace-nowrap">
+          {dupBrandsRow2.map((b, idx) => renderBgCard(b, `r2-${idx}`, 'text-purple-400'))}
+        </div>
+
+        {/* Row 3: Leftward Animated Card Stream */}
+        <div className="flex items-center gap-3 w-max animate-marquee-left whitespace-nowrap">
+          {dupBrandsRow3.map((b, idx) => renderBgCard(b, `r3-${idx}`, 'text-emerald-400'))}
+        </div>
+
+        {/* Row 4: Rightward Animated Card Stream */}
+        <div className="flex items-center gap-3 w-max animate-marquee-right whitespace-nowrap">
+          {dupBrandsRow4.map((b, idx) => renderBgCard(b, `r4-${idx}`, 'text-blue-400'))}
         </div>
 
       </div>
