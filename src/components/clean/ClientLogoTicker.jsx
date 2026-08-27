@@ -124,7 +124,7 @@ export default function ClientLogoTicker() {
                 key={brand.id}
                 className={`p-3.5 rounded-2xl bg-slate-900/90 backdrop-blur-md border transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between space-y-3 group cursor-default shadow-md ${
                   brand.active 
-                    ? 'border-emerald-500/40 bg-gradient-to-b from-emerald-500/10 to-slate-900/95 hover:border-emerald-400 hover:shadow-[0_0_20px_rgba(52,211,153,0.25)]' 
+                    ? 'border-cyan-500/40 bg-gradient-to-b from-cyan-500/10 to-slate-900/95 hover:border-cyan-400 hover:shadow-[0_0_20px_rgba(0,243,255,0.25)]' 
                     : 'border-slate-800/90 hover:border-cyan-500/30 hover:bg-slate-900/95'
                 }`}
               >
@@ -135,7 +135,7 @@ export default function ClientLogoTicker() {
                   {brand.active && (
                     <span 
                       title="Active Ongoing Client Partner"
-                      className="w-2.5 h-2.5 rounded-full bg-cyan-400 shrink-0 shadow-[0_0_10px_rgba(0,243,255,0.9)] animate-pulse" 
+                      className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0 shadow-[0_0_8px_rgba(0,243,255,0.8)]" 
                     />
                   )}
                 </div>
