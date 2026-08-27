@@ -96,7 +96,7 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 .animate-marquee-left {
   display: flex;
   will-change: transform;
-  animation: marqueeLeft 45s linear infinite;
+  animation: marqueeLeft 95s linear infinite;
 }
 
 .animate-marquee-left:hover {
@@ -116,7 +116,7 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 .animate-marquee-right {
   display: flex;
   will-change: transform;
-  animation: marqueeRight 50s linear infinite;
+  animation: marqueeRight 100s linear infinite;
 }
 
 .animate-marquee-right:hover {

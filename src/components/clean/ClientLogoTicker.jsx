@@ -6,11 +6,11 @@ import {
 } from 'lucide-react';
 
 const clientBrands = [
-  { id: 1, name: 'reThink.ac', tag: 'EdTech Platform', icon: Lightbulb, highlight: true },
-  { id: 2, name: 'Education BD', tag: 'Study Abroad Consultancy', icon: GraduationCap, highlight: true },
-  { id: 3, name: 'Banglay IELTS', tag: 'IELTS Training Center', icon: BookMarked, highlight: true },
-  { id: 4, name: 'Banglay IELTS & Immigration Center', tag: 'Immigration Services', icon: Award, highlight: true },
-  { id: 5, name: 'Shikor TV Canada', tag: 'TV Channel Broadcast', icon: Tv, highlight: true },
+  { id: 1, name: 'reThink.ac', tag: 'EdTech Platform', icon: Lightbulb, active: true },
+  { id: 2, name: 'Banglay IELTS', tag: 'IELTS Training Center', icon: BookMarked, active: true },
+  { id: 3, name: 'Banglay IELTS & Immigration Center', tag: 'Immigration Services', icon: Award, active: true },
+  { id: 4, name: 'Education BD', tag: 'Study Abroad Consultancy', icon: GraduationCap },
+  { id: 5, name: 'Shikor TV Canada', tag: 'TV Channel Broadcast', icon: Tv },
   { id: 6, name: 'Amazon Immigration Services', tag: 'Visa & Work Services', icon: Compass },
   { id: 7, name: 'Worklife Canada Immigration', tag: 'Canada Immigration', icon: MapPin },
   { id: 8, name: 'Global Pathways Immigration', tag: 'Study Abroad Consultancy', icon: Globe2 },
@@ -34,31 +34,63 @@ export default function ClientLogoTicker() {
       className="py-14 border-y border-slate-800/60 bg-slate-950 relative overflow-hidden group/section"
     >
       
-      {/* Background Animated Sliding Marquee Watermark (Visible 25% Base -> 40% on Hover) */}
+      {/* Background Animated Card Marquee Stream (Slow & Smooth, Visible 25% Base -> 50% Hover) */}
       <div 
-        className={`absolute inset-0 pointer-events-none transition-opacity duration-500 overflow-hidden flex flex-col justify-center gap-8 z-0 ticker-3d-mask ${
-          isHovered ? 'opacity-40' : 'opacity-25'
+        className={`absolute inset-0 pointer-events-none transition-opacity duration-700 overflow-hidden flex flex-col justify-center gap-5 z-0 ticker-3d-mask ${
+          isHovered ? 'opacity-50' : 'opacity-25'
         }`}
       >
         
-        {/* Row 1: Leftward Animated Marquee Stream */}
-        <div className="flex items-center gap-10 w-max animate-marquee-left whitespace-nowrap text-cyan-400/80 font-mono text-base md:text-lg font-black uppercase tracking-widest">
-          {dupBrandsRow1.map((b, idx) => (
-            <div key={`bg-1-${idx}`} className="flex items-center gap-3">
-              <span className="drop-shadow-[0_0_12px_rgba(0,243,255,0.4)]">{b.name}</span>
-              <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(0,243,255,0.8)]" />
-            </div>
-          ))}
+        {/* Row 1: Leftward Animated Card Stream */}
+        <div className="flex items-center gap-4 w-max animate-marquee-left whitespace-nowrap">
+          {dupBrandsRow1.map((b, idx) => {
+            const IconComp = b.icon;
+            return (
+              <div 
+                key={`bg-card-1-${idx}`} 
+                className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-slate-900/60 border border-slate-800/60 backdrop-blur-sm shrink-0"
+              >
+                <div className="p-2 rounded-xl bg-slate-950 border border-slate-800 text-cyan-400">
+                  <IconComp className="w-4 h-4" />
+                </div>
+                <div className="text-left">
+                  <div className="text-xs font-bold text-slate-200 font-mono flex items-center gap-2">
+                    <span>{b.name}</span>
+                    {b.active && (
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.9)]" />
+                    )}
+                  </div>
+                  <span className="text-[10px] text-slate-400 font-mono">{b.tag}</span>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
-        {/* Row 2: Rightward Animated Marquee Stream */}
-        <div className="flex items-center gap-10 w-max animate-marquee-right whitespace-nowrap text-purple-400/80 font-mono text-base md:text-lg font-black uppercase tracking-widest">
-          {dupBrandsRow2.map((b, idx) => (
-            <div key={`bg-2-${idx}`} className="flex items-center gap-3">
-              <span className="drop-shadow-[0_0_12px_rgba(168,85,247,0.4)]">{b.name}</span>
-              <span className="w-2 h-2 rounded-full bg-purple-400 shadow-[0_0_8px_rgba(168,85,247,0.8)]" />
-            </div>
-          ))}
+        {/* Row 2: Rightward Animated Card Stream */}
+        <div className="flex items-center gap-4 w-max animate-marquee-right whitespace-nowrap">
+          {dupBrandsRow2.map((b, idx) => {
+            const IconComp = b.icon;
+            return (
+              <div 
+                key={`bg-card-2-${idx}`} 
+                className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-slate-900/60 border border-slate-800/60 backdrop-blur-sm shrink-0"
+              >
+                <div className="p-2 rounded-xl bg-slate-950 border border-slate-800 text-purple-400">
+                  <IconComp className="w-4 h-4" />
+                </div>
+                <div className="text-left">
+                  <div className="text-xs font-bold text-slate-200 font-mono flex items-center gap-2">
+                    <span>{b.name}</span>
+                    {b.active && (
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.9)]" />
+                    )}
+                  </div>
+                  <span className="text-[10px] text-slate-400 font-mono">{b.tag}</span>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
       </div>
@@ -91,8 +123,8 @@ export default function ClientLogoTicker() {
               <div
                 key={brand.id}
                 className={`p-3.5 rounded-2xl bg-slate-900/90 backdrop-blur-md border transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between space-y-3 group cursor-default shadow-md ${
-                  brand.highlight 
-                    ? 'border-cyan-500/40 bg-gradient-to-b from-cyan-500/10 to-slate-900/95 hover:border-cyan-400 hover:shadow-[0_0_20px_rgba(0,243,255,0.2)]' 
+                  brand.active 
+                    ? 'border-emerald-500/40 bg-gradient-to-b from-emerald-500/10 to-slate-900/95 hover:border-emerald-400 hover:shadow-[0_0_20px_rgba(52,211,153,0.25)]' 
                     : 'border-slate-800/90 hover:border-cyan-500/30 hover:bg-slate-900/95'
                 }`}
               >
@@ -100,8 +132,11 @@ export default function ClientLogoTicker() {
                   <div className={`p-2 rounded-xl bg-slate-950 border border-slate-800 text-cyan-400 group-hover:text-cyan-300 transition-colors`}>
                     <IconComp className="w-4 h-4" />
                   </div>
-                  {brand.highlight && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0 shadow-[0_0_6px_rgba(0,243,255,0.8)]" />
+                  {brand.active && (
+                    <span 
+                      title="Active Ongoing Client Partner"
+                      className="w-2.5 h-2.5 rounded-full bg-emerald-400 shrink-0 shadow-[0_0_10px_rgba(52,211,153,0.9)] animate-pulse" 
+                    />
                   )}
                 </div>
 
