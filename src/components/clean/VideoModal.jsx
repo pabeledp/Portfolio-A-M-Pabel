@@ -17,8 +17,6 @@ export default function VideoModal({ project, isOpen, onClose }) {
 
   if (!isOpen || !project) return null;
 
-  const isShortForm = project.subCategory === 'short-form' || project.tags?.includes('Short-Form Video');
-
   return createPortal(
     <div 
       onClick={onClose}
@@ -26,9 +24,7 @@ export default function VideoModal({ project, isOpen, onClose }) {
     >
       <div 
         onClick={(e) => e.stopPropagation()}
-        className={`relative w-full ${
-          isShortForm ? 'max-w-[92vw] sm:max-w-md' : 'max-w-[94vw] sm:max-w-4xl'
-        } max-h-[75vh] sm:max-h-[80vh] rounded-2xl sm:rounded-3xl bg-slate-950 border border-cyan-500/40 overflow-hidden shadow-2xl flex flex-col justify-between my-auto`}
+        className="relative w-full max-w-[94vw] sm:max-w-4xl max-h-[85vh] sm:max-h-[88vh] rounded-2xl sm:rounded-3xl bg-slate-950 border border-cyan-500/40 overflow-hidden shadow-2xl flex flex-col justify-between my-auto"
       >
         
         {/* Modal Header */}
@@ -54,35 +50,14 @@ export default function VideoModal({ project, isOpen, onClose }) {
           </button>
         </div>
 
-        {/* Video Wrapper Container - Targeted Alignment Fix ONLY */}
-        <div 
-          className="flex items-center justify-center w-full overflow-hidden flex-1 bg-black"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '100%',
-            overflow: 'hidden',
-            margin: '0 auto',
-            padding: 0
-          }}
-        >
+        {/* Standard Video Viewport Container (Identical system for all videos including Shorts) */}
+        <div className="relative w-full aspect-video bg-black flex items-center justify-center overflow-hidden flex-1">
           <iframe
             src={project.embedUrl}
             title={project.title}
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen
-            className="w-full bg-black border-0"
-            style={{
-              width: '100%',
-              height: '100%', minHeight: '360px',
-              maxHeight: '100%',
-              aspectRatio: isShortForm ? '9/16' : '16/9',
-              objectFit: 'contain',
-              margin: 0,
-              padding: 0,
-              transform: 'none'
-            }}
+            className="w-full h-full border-0 bg-black"
           />
         </div>
 
@@ -101,9 +76,9 @@ export default function VideoModal({ project, isOpen, onClose }) {
               href={project.embedUrl.replace('/preview', '/view')}
               target="_blank"
               rel="noreferrer"
-              className="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-bold text-[10px] sm:text-xs shadow-md hover:scale-105 transition-all flex items-center gap-1.5 cursor-pointer ml-auto shrink-0"
+              className="text-[11px] sm:text-xs font-mono text-cyan-400 hover:text-cyan-300 flex items-center gap-1 transition-colors"
             >
-              <span>Open in Drive</span>
+              <span>Open in Google Drive</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
           )}
