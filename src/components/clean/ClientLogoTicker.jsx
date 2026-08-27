@@ -23,10 +23,43 @@ const clientBrands = [
 ];
 
 export default function ClientLogoTicker() {
+  const dupBrandsRow1 = [...clientBrands, ...clientBrands, ...clientBrands];
+  const dupBrandsRow2 = [...clientBrands.slice().reverse(), ...clientBrands.slice().reverse(), ...clientBrands.slice().reverse()];
+
   return (
-    <section className="py-14 border-y border-slate-800/60 bg-slate-950/90 backdrop-blur-xl relative z-10">
+    <section className="py-14 border-y border-slate-800/60 bg-slate-950 relative overflow-hidden">
       
-      <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-8">
+      {/* Background 10% Transparency Sliding Ticker & Side Gradient Mask */}
+      <div className="absolute inset-0 pointer-events-none opacity-10 overflow-hidden flex flex-col justify-center gap-6 z-0 ticker-3d-mask">
+        
+        {/* Row 1: Leftward Animated Marquee */}
+        <div className="flex items-center gap-8 w-max animate-marquee-left whitespace-nowrap text-slate-300 font-mono text-sm font-bold uppercase tracking-widest">
+          {dupBrandsRow1.map((b, idx) => (
+            <div key={`bg-1-${idx}`} className="flex items-center gap-2">
+              <span>{b.name}</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 opacity-60" />
+            </div>
+          ))}
+        </div>
+
+        {/* Row 2: Rightward Animated Marquee */}
+        <div className="flex items-center gap-8 w-max animate-marquee-right whitespace-nowrap text-slate-300 font-mono text-sm font-bold uppercase tracking-widest">
+          {dupBrandsRow2.map((b, idx) => (
+            <div key={`bg-2-${idx}`} className="flex items-center gap-2">
+              <span>{b.name}</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-purple-400 opacity-60" />
+            </div>
+          ))}
+        </div>
+
+      </div>
+
+      {/* Side Fade Gradient Overlay (Melts smoothly into section bg on edges) */}
+      <div className="absolute inset-y-0 left-0 w-20 md:w-40 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-20 md:w-40 bg-gradient-to-l from-slate-950 via-slate-950/80 to-transparent z-10 pointer-events-none" />
+
+      {/* Foreground Container: Clean 100% Readable Brand Grid */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-8 relative z-20">
         
         {/* Clean Header */}
         <div className="text-center space-y-2">
@@ -48,10 +81,10 @@ export default function ClientLogoTicker() {
             return (
               <div
                 key={brand.id}
-                className={`p-3 rounded-2xl bg-slate-900/80 border transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between space-y-2.5 group cursor-default shadow-sm ${
+                className={`p-3 rounded-2xl bg-slate-900/90 backdrop-blur-md border transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between space-y-2.5 group cursor-default shadow-md ${
                   brand.highlight 
-                    ? 'border-cyan-500/30 bg-gradient-to-b from-cyan-500/5 to-transparent hover:border-cyan-400' 
-                    : 'border-slate-800/80 hover:border-slate-700'
+                    ? 'border-cyan-500/35 bg-gradient-to-b from-cyan-500/10 to-slate-900/90 hover:border-cyan-400' 
+                    : 'border-slate-800/90 hover:border-slate-700'
                 }`}
               >
                 <div className="flex items-center justify-between">
