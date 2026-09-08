@@ -13,9 +13,15 @@ export const personalProfile = {
     email: "info@ampabel.com",
     studio: "FramEmpire Studio",
     website: "https://ampabel.com",
-    linkedin: "https://bd.linkedin.com/in/pabeledp"
+    linkedin: "https://bd.linkedin.com/in/pabeledp",
+    behance: "https://www.behance.net/PabelEDP"
   },
   stats: []
+};
+
+export const externalArchives = {
+  videoAndMotionDriveUrl: "https://drive.google.com/drive/folders/11m4hzel4I9Ctn7Zywgiz6M7QlT8voA7x?usp=share_link",
+  graphicDesignBehanceUrl: "https://www.behance.net/PabelEDP"
 };
 
 export const edTechVideos = [

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { portfolioProjects } from '../../data/personalData';
+import { portfolioProjects, externalArchives } from '../../data/personalData';
 import VideoModal from './VideoModal';
 import WebPreviewModal from './WebPreviewModal';
 import BehanceModal from './BehanceModal';
-import { Sparkles, Play, ArrowRight, ExternalLink, Globe, Film, Palette, ChevronDown, Layers } from 'lucide-react';
+import { 
+  Sparkles, Play, ArrowRight, ArrowUpRight, ExternalLink, 
+  Film, Palette, ChevronDown, ChevronUp, Layers 
+} from 'lucide-react';
 
 export default function CleanPortfolio({ isRevealed = true }) {
   const [filter, setFilter] = useState('all');
@@ -229,7 +232,7 @@ export default function CleanPortfolio({ isRevealed = true }) {
                     Short-Form Video
                   </h3>
                   <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-[10px] font-mono text-cyan-400 font-bold">
-                    Short-Form Video
+                    Reels & Shorts
                   </span>
                 </div>
                 <button
@@ -253,7 +256,7 @@ export default function CleanPortfolio({ isRevealed = true }) {
               <div className="flex items-center gap-2">
                 <Film className="w-4 h-4 text-cyan-400" />
                 <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
-                  Video Editing
+                  Commercial Video Editing
                 </h3>
               </div>
               <button
@@ -303,19 +306,77 @@ export default function CleanPortfolio({ isRevealed = true }) {
         </div>
       )}
 
-      {/* Interactive See More Button */}
-      {filter === 'all' && !showAll && (
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-10 sm:pt-12">
+      {/* Apple Liquid Glass Action Buttons Section */}
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-12 sm:pt-16">
+        
+        {/* Case 1: Filter is 3D Motion or Video Editing -> Google Drive Archive Button */}
+        {(filter === 'motion-graphics' || filter === 'video-editing') && (
+          <a
+            href={externalArchives.videoAndMotionDriveUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-white text-xs sm:text-sm font-medium tracking-wide transition-all duration-300 backdrop-blur-2xl bg-white/[0.07] hover:bg-white/[0.14] active:bg-white/[0.22] border border-white/20 hover:border-white/40 shadow-[0_8px_32px_0_rgba(0,0,0,0.37),inset_0_1px_1px_0_rgba(255,255,255,0.25)] hover:shadow-[0_12px_40px_0_rgba(0,0,0,0.5),inset_0_1px_2px_0_rgba(255,255,255,0.4)] hover:scale-[1.02] cursor-pointer overflow-hidden"
+          >
+            {/* Specular Apple Glass Top Edge Highlight */}
+            <span className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent rounded-t-full pointer-events-none" />
+            <span>See More Works</span>
+            <ArrowUpRight className="w-4 h-4 text-white/80 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+          </a>
+        )}
+
+        {/* Case 2: Filter is Graphic Design -> Behance Archive Button */}
+        {filter === 'graphic-design' && (
+          <a
+            href={externalArchives.graphicDesignBehanceUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-white text-xs sm:text-sm font-medium tracking-wide transition-all duration-300 backdrop-blur-2xl bg-white/[0.07] hover:bg-white/[0.14] active:bg-white/[0.22] border border-white/20 hover:border-white/40 shadow-[0_8px_32px_0_rgba(0,0,0,0.37),inset_0_1px_1px_0_rgba(255,255,255,0.25)] hover:shadow-[0_12px_40px_0_rgba(0,0,0,0.5),inset_0_1px_2px_0_rgba(255,255,255,0.4)] hover:scale-[1.02] cursor-pointer overflow-hidden"
+          >
+            {/* Specular Apple Glass Top Edge Highlight */}
+            <span className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent rounded-t-full pointer-events-none" />
+            <span>See More Works</span>
+            <ArrowUpRight className="w-4 h-4 text-white/80 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+          </a>
+        )}
+
+        {/* Case 3: Filter is 'all' and NOT showAll -> Expand to View All Projects */}
+        {filter === 'all' && !showAll && (
           <button
             onClick={() => setShowAll(true)}
-            className="px-6 py-3 sm:px-8 sm:py-3.5 rounded-2xl bg-slate-900 border border-slate-700 hover:border-cyan-400 text-white font-bold text-xs sm:text-sm tracking-wide shadow-lg hover:shadow-[0_0_25px_rgba(0,243,255,0.3)] transition-all flex items-center gap-2 cursor-pointer group"
+            className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-white text-xs sm:text-sm font-medium tracking-wide transition-all duration-300 backdrop-blur-2xl bg-white/[0.07] hover:bg-white/[0.14] active:bg-white/[0.22] border border-white/20 hover:border-white/40 shadow-[0_8px_32px_0_rgba(0,0,0,0.37),inset_0_1px_1px_0_rgba(255,255,255,0.25)] hover:shadow-[0_12px_40px_0_rgba(0,0,0,0.5),inset_0_1px_2px_0_rgba(255,255,255,0.4)] hover:scale-[1.02] cursor-pointer overflow-hidden"
           >
-            <Layers className="w-4 h-4 text-cyan-400" />
+            <span className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent rounded-t-full pointer-events-none" />
+            <Layers className="w-4 h-4 text-white/80 group-hover:text-white transition-colors" />
             <span>See More Projects ({portfolioProjects.length - 8} More)</span>
-            <ChevronDown className="w-4 h-4 text-cyan-400 group-hover:translate-y-0.5 transition-transform" />
+            <ChevronDown className="w-4 h-4 text-white/80 group-hover:text-white group-hover:translate-y-0.5 transition-transform" />
           </button>
-        </div>
-      )}
+        )}
+
+        {/* Case 4: Filter is 'all' and showAll is true (Full View of all projects) -> Liquid Glass links to Drive & Behance + Show Less */}
+        {filter === 'all' && showAll && (
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <a
+              href={externalArchives.videoAndMotionDriveUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-white text-xs sm:text-sm font-medium tracking-wide transition-all duration-300 backdrop-blur-2xl bg-white/[0.07] hover:bg-white/[0.14] active:bg-white/[0.22] border border-white/20 hover:border-white/40 shadow-[0_8px_32px_0_rgba(0,0,0,0.37),inset_0_1px_1px_0_rgba(255,255,255,0.25)] hover:shadow-[0_12px_40px_0_rgba(0,0,0,0.5),inset_0_1px_2px_0_rgba(255,255,255,0.4)] hover:scale-[1.02] cursor-pointer overflow-hidden"
+            >
+              <span className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent rounded-t-full pointer-events-none" />
+              <span>See More Works</span>
+              <ArrowUpRight className="w-4 h-4 text-white/80 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+            </a>
+
+            <button
+              onClick={() => setShowAll(false)}
+              className="group relative inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full text-slate-400 hover:text-white text-xs sm:text-sm font-medium tracking-wide transition-all duration-300 backdrop-blur-2xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 cursor-pointer"
+            >
+              <span>Show Less</span>
+              <ChevronUp className="w-4 h-4 text-slate-400 group-hover:text-white group-hover:-translate-y-0.5 transition-transform" />
+            </button>
+          </div>
+        )}
+
+      </div>
 
       {/* Dynamic Video Lightbox Modal */}
       <VideoModal
