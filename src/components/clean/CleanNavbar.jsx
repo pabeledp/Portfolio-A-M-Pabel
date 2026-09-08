@@ -30,15 +30,17 @@ export default function CleanNavbar() {
             <a href="#contact" className="hover:text-cyan-400 transition-colors">Contact</a>
           </nav>
 
-          {/* Desktop WhatsApp CTA Button */}
+          {/* Desktop WhatsApp CTA Button (Apple Liquid Glass) */}
           <div className="hidden md:flex items-center gap-3 shrink-0">
             <a
               href="https://wa.me/8801615288259"
               target="_blank"
               rel="noreferrer"
-              className="px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-bold text-xs shadow-[0_0_20px_rgba(0,243,255,0.3)] hover:shadow-[0_0_30px_rgba(0,243,255,0.5)] transition-all flex items-center gap-1.5 shrink-0"
+              className="group relative inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-white text-xs font-medium tracking-wide transition-all duration-300 backdrop-blur-2xl bg-white/[0.07] hover:bg-white/[0.14] active:bg-white/[0.22] border border-white/20 hover:border-white/40 shadow-[0_8px_32px_0_rgba(0,0,0,0.37),inset_0_1px_1px_0_rgba(255,255,255,0.25)] hover:shadow-[0_12px_40px_0_rgba(0,0,0,0.5),inset_0_1px_2px_0_rgba(255,255,255,0.4)] hover:scale-[1.02] cursor-pointer overflow-hidden shrink-0"
             >
-              <MessageSquare className="w-3.5 h-3.5 fill-current" />
+              {/* Specular Apple Glass Top Edge Highlight */}
+              <span className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent rounded-t-full pointer-events-none" />
+              <MessageSquare className="w-3.5 h-3.5 text-white/90 group-hover:text-white transition-colors" />
               <span>WhatsApp Pabel</span>
             </a>
           </div>
@@ -86,15 +88,16 @@ export default function CleanNavbar() {
               Contact
             </a>
 
-            {/* WhatsApp CTA inside Mobile 3-Lines Dropdown Menu */}
+            {/* WhatsApp CTA inside Mobile 3-Lines Dropdown Menu (Apple Liquid Glass) */}
             <a
               href="https://wa.me/8801615288259"
               target="_blank"
               rel="noreferrer"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-bold text-xs shadow-[0_0_20px_rgba(0,243,255,0.3)] flex items-center justify-center gap-2 mt-2"
+              className="group relative w-full py-3 px-4 rounded-xl text-white text-xs font-medium tracking-wide transition-all duration-300 backdrop-blur-2xl bg-white/[0.07] hover:bg-white/[0.14] active:bg-white/[0.22] border border-white/20 hover:border-white/40 shadow-[0_8px_32px_0_rgba(0,0,0,0.37),inset_0_1px_1px_0_rgba(255,255,255,0.25)] flex items-center justify-center gap-2 mt-2 overflow-hidden"
             >
-              <MessageSquare className="w-3.5 h-3.5 fill-current" />
+              <span className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent rounded-t-xl pointer-events-none" />
+              <MessageSquare className="w-3.5 h-3.5 text-white/90 group-hover:text-white transition-colors" />
               <span>WhatsApp Pabel</span>
             </a>
           </div>
