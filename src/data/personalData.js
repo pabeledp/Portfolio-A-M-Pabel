@@ -221,6 +221,15 @@ export const graphicDesignProjects = [
 export const vibeCodingWebsites = [
   {
     id: "web-1",
+    title: "Artora FramEmpire",
+    displayUrl: "artora.framempire.com",
+    url: "https://artora.framempire.com",
+    category: "Canvas & Hand Painting Store",
+    description: "Hand painting and canvas painting business web platform engineered with Vibe Coding.",
+    tags: ["Hand Painting", "Canvas Art", "E-Commerce", "Vibe Coding"]
+  },
+  {
+    id: "web-2",
     title: "Education BD",
     displayUrl: "www.education-bd.com",
     url: "https://www.education-bd.com",
@@ -229,22 +238,13 @@ export const vibeCodingWebsites = [
     tags: ["React 18", "TailwindCSS", "Ed-Tech", "Vibe Coding"]
   },
   {
-    id: "web-2",
+    id: "web-3",
     title: "A M Pabel Portfolio",
     displayUrl: "www.ampabel.com",
     url: "https://portfolio.ampabel.com",
     category: "Personal Studio Portfolio",
     description: "High-impact 3D motion graphics, video editing & vibe-coded personal portfolio web application.",
     tags: ["Vite", "React 18", "TailwindCSS", "Vibe Coding"]
-  },
-  {
-    id: "web-3",
-    title: "Artora FramEmpire",
-    displayUrl: "artora.framempire.com",
-    url: "https://artora.framempire.com",
-    category: "Canvas & Hand Painting Store",
-    description: "Hand painting and canvas painting business web platform engineered with Vibe Coding.",
-    tags: ["Hand Painting", "Canvas Art", "E-Commerce", "Vibe Coding"]
   },
   {
     id: "web-4",
