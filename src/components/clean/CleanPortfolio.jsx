@@ -20,23 +20,6 @@ export default function CleanPortfolio({ isRevealed = true }) {
   const edTechVideoProjects = portfolioProjects.filter(p => p.category === 'video-editing' && p.subCategory !== 'short-form');
   const graphicProjects = portfolioProjects.filter(p => p.category === 'graphic-design');
 
-  // Compute displayed projects
-  let filteredProjects = [];
-  if (filter === 'all') {
-    if (showAll) {
-      filteredProjects = portfolioProjects;
-    } else {
-      filteredProjects = [
-        ...motionProjects.slice(0, 3),
-        ...shortFormProjects,
-        ...edTechVideoProjects.slice(0, 3),
-        ...graphicProjects.slice(0, 3)
-      ];
-    }
-  } else {
-    filteredProjects = portfolioProjects.filter(p => p.category === filter);
-  }
-
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
     setShowAll(false);
@@ -193,9 +176,9 @@ export default function CleanPortfolio({ isRevealed = true }) {
         </div>
       </div>
 
-      {/* Department Section Dividers when filter === 'all' */}
-      {filter === 'all' && !showAll && (
-        <div className="space-y-10 sm:space-y-12">
+      {/* Category-Wise Display when filter === 'all' (Both 3-Item Preview and Full View) */}
+      {filter === 'all' && (
+        <div className="space-y-10 sm:space-y-14">
           
           {/* Section 1: 3D Motion Graphics */}
           {motionProjects.length > 0 && (
@@ -206,23 +189,28 @@ export default function CleanPortfolio({ isRevealed = true }) {
                   <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
                     3D Motion Graphics
                   </h3>
+                  <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-[10px] font-mono text-cyan-400 font-bold">
+                    {motionProjects.length} Projects
+                  </span>
                 </div>
-                <button
-                  onClick={() => handleFilterChange('motion-graphics')}
-                  className="text-xs font-mono text-cyan-400 hover:text-cyan-300 font-medium flex items-center gap-1 cursor-pointer group"
-                >
-                  <span>See more</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </button>
+                {!showAll && motionProjects.length > 3 && (
+                  <button
+                    onClick={() => handleFilterChange('motion-graphics')}
+                    className="text-xs font-mono text-cyan-400 hover:text-cyan-300 font-medium flex items-center gap-1 cursor-pointer group"
+                  >
+                    <span>See more ({motionProjects.length - 3} more)</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                )}
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8 items-stretch">
-                {motionProjects.slice(0, 3).map((project) => renderProjectCard(project))}
+                {(showAll ? motionProjects : motionProjects.slice(0, 3)).map((project) => renderProjectCard(project))}
               </div>
             </div>
           )}
 
-          {/* Section 2: Short-Form Video */}
+          {/* Section 2: Short-Form Video (Strictly 3 in default preview, all in showAll) */}
           {shortFormProjects.length > 0 && (
             <div className="space-y-5 sm:space-y-6">
               <div className="flex items-center justify-between border-b border-slate-800/80 pb-3">
@@ -232,77 +220,97 @@ export default function CleanPortfolio({ isRevealed = true }) {
                     Short-Form Video
                   </h3>
                   <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-[10px] font-mono text-cyan-400 font-bold">
-                    Reels & Shorts
+                    {shortFormProjects.length} Reels & Shorts
                   </span>
                 </div>
-                <button
-                  onClick={() => handleFilterChange('video-editing')}
-                  className="text-xs font-mono text-cyan-400 hover:text-cyan-300 font-medium flex items-center gap-1 cursor-pointer group"
-                >
-                  <span>See more</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </button>
+                {!showAll && shortFormProjects.length > 3 && (
+                  <button
+                    onClick={() => handleFilterChange('video-editing')}
+                    className="text-xs font-mono text-cyan-400 hover:text-cyan-300 font-medium flex items-center gap-1 cursor-pointer group"
+                  >
+                    <span>See more ({shortFormProjects.length - 3} more)</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                )}
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8 items-stretch">
-                {shortFormProjects.map((project) => renderProjectCard(project))}
+                {(showAll ? shortFormProjects : shortFormProjects.slice(0, 3)).map((project) => renderProjectCard(project))}
               </div>
             </div>
           )}
 
-          {/* Section 3: Video Editing */}
-          <div className="space-y-5 sm:space-y-6">
-            <div className="flex items-center justify-between border-b border-slate-800/80 pb-3">
-              <div className="flex items-center gap-2">
-                <Film className="w-4 h-4 text-cyan-400" />
-                <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
-                  Commercial Video Editing
-                </h3>
+          {/* Section 3: Commercial Video Editing */}
+          {edTechVideoProjects.length > 0 && (
+            <div className="space-y-5 sm:space-y-6">
+              <div className="flex items-center justify-between border-b border-slate-800/80 pb-3">
+                <div className="flex items-center gap-2">
+                  <Film className="w-4 h-4 text-cyan-400" />
+                  <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                    Commercial Video Editing
+                  </h3>
+                  <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-[10px] font-mono text-cyan-400 font-bold">
+                    {edTechVideoProjects.length} Videos
+                  </span>
+                </div>
+                {!showAll && edTechVideoProjects.length > 3 && (
+                  <button
+                    onClick={() => handleFilterChange('video-editing')}
+                    className="text-xs font-mono text-cyan-400 hover:text-cyan-300 font-medium flex items-center gap-1 cursor-pointer group"
+                  >
+                    <span>See more ({edTechVideoProjects.length - 3} more)</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                )}
               </div>
-              <button
-                onClick={() => handleFilterChange('video-editing')}
-                className="text-xs font-mono text-cyan-400 hover:text-cyan-300 font-medium flex items-center gap-1 cursor-pointer group"
-              >
-                <span>See more</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8 items-stretch">
-              {edTechVideoProjects.slice(0, 3).map((project) => renderProjectCard(project))}
-            </div>
-          </div>
-
-          {/* Section 4: Graphic Design */}
-          <div className="space-y-5 sm:space-y-6">
-            <div className="flex items-center justify-between border-b border-slate-800/80 pb-3">
-              <div className="flex items-center gap-2">
-                <Palette className="w-4 h-4 text-cyan-400" />
-                <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
-                  Graphic Design & Brand Systems
-                </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8 items-stretch">
+                {(showAll ? edTechVideoProjects : edTechVideoProjects.slice(0, 3)).map((project) => renderProjectCard(project))}
               </div>
-              <button
-                onClick={() => handleFilterChange('graphic-design')}
-                className="text-xs font-mono text-cyan-400 hover:text-cyan-300 font-medium flex items-center gap-1 cursor-pointer group"
-              >
-                <span>See more</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </button>
             </div>
+          )}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8 items-stretch">
-              {graphicProjects.slice(0, 3).map((project) => renderProjectCard(project))}
+          {/* Section 4: Graphic Design & Brand Systems */}
+          {graphicProjects.length > 0 && (
+            <div className="space-y-5 sm:space-y-6">
+              <div className="flex items-center justify-between border-b border-slate-800/80 pb-3">
+                <div className="flex items-center gap-2">
+                  <Palette className="w-4 h-4 text-cyan-400" />
+                  <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                    Graphic Design & Brand Systems
+                  </h3>
+                  <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-[10px] font-mono text-cyan-400 font-bold">
+                    {graphicProjects.length} Projects
+                  </span>
+                </div>
+                {!showAll && graphicProjects.length > 3 && (
+                  <button
+                    onClick={() => handleFilterChange('graphic-design')}
+                    className="text-xs font-mono text-cyan-400 hover:text-cyan-300 font-medium flex items-center gap-1 cursor-pointer group"
+                  >
+                    <span>See more ({graphicProjects.length - 3} more)</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                )}
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8 items-stretch">
+                {(showAll ? graphicProjects : graphicProjects.slice(0, 3)).map((project) => renderProjectCard(project))}
+              </div>
             </div>
-          </div>
+          )}
 
         </div>
       )}
 
-      {/* Grid View for Filtered or Expanded View */}
-      {(filter !== 'all' || showAll) && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8 items-stretch">
-          {filteredProjects.map((project) => renderProjectCard(project))}
+      {/* Grid View for Specific Filter Selected (3D Motion, Video Editing, Graphic Design) */}
+      {filter !== 'all' && (
+        <div className="space-y-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8 items-stretch">
+            {portfolioProjects
+              .filter(p => filter === 'video-editing' ? p.category === 'video-editing' : p.category === filter)
+              .map((project) => renderProjectCard(project))}
+          </div>
         </div>
       )}
 
@@ -339,7 +347,7 @@ export default function CleanPortfolio({ isRevealed = true }) {
           </a>
         )}
 
-        {/* Case 3: Filter is 'all' and NOT showAll -> Expand to View All Projects */}
+        {/* Case 3: Filter is 'all' and NOT showAll -> Expand to View All Projects Category-Wise */}
         {filter === 'all' && !showAll && (
           <button
             onClick={() => setShowAll(true)}
@@ -347,12 +355,12 @@ export default function CleanPortfolio({ isRevealed = true }) {
           >
             <span className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent rounded-t-full pointer-events-none" />
             <Layers className="w-4 h-4 text-white/80 group-hover:text-white transition-colors" />
-            <span>See More Projects ({portfolioProjects.length - 8} More)</span>
+            <span>See More Projects ({portfolioProjects.length - 12} More)</span>
             <ChevronDown className="w-4 h-4 text-white/80 group-hover:text-white group-hover:translate-y-0.5 transition-transform" />
           </button>
         )}
 
-        {/* Case 4: Filter is 'all' and showAll is true (Full View of all projects) -> Liquid Glass links to Drive & Behance + Show Less */}
+        {/* Case 4: Filter is 'all' and showAll is true (Full View of all projects category-wise) -> Liquid Glass links to Drive & Behance + Show Less */}
         {filter === 'all' && showAll && (
           <div className="flex flex-wrap items-center justify-center gap-4">
             <a
