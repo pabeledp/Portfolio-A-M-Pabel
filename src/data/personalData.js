@@ -239,12 +239,12 @@ export const vibeCodingWebsites = [
   },
   {
     id: "web-3",
-    title: "FramEmpire Verse 3D",
-    displayUrl: "verse.framempire.com",
-    url: "https://verse.framempire.com",
-    category: "3D WebGL Metaverse Environment",
-    description: "Immersive interactive 3D web experience engineered for FramEmpire Verse using Three.js & Vibe Coding.",
-    tags: ["Three.js", "WebGL", "3D Metaverse", "Vibe Coding"]
+    title: "Artora FramEmpire",
+    displayUrl: "artora.framempire.com",
+    url: "https://artora.framempire.com",
+    category: "Canvas & Hand Painting Store",
+    description: "Hand painting and canvas painting business web platform engineered with Vibe Coding.",
+    tags: ["Hand Painting", "Canvas Art", "E-Commerce", "Vibe Coding"]
   },
   {
     id: "web-4",
