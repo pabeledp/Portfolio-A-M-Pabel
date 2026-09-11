@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { portfolioProjects, externalArchives } from '../../data/personalData';
 import VideoModal from './VideoModal';
 import WebPreviewModal from './WebPreviewModal';
-import BehanceModal from './BehanceModal';
 import { 
   Sparkles, Play, ArrowRight, ArrowUpRight, ExternalLink, 
   Film, Palette, ChevronDown, ChevronUp, Layers 
@@ -13,7 +12,6 @@ export default function CleanPortfolio({ isRevealed = true }) {
   const [showAll, setShowAll] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [selectedWeb, setSelectedWeb] = useState(null);
-  const [selectedBehance, setSelectedBehance] = useState(null);
 
   const motionProjects = portfolioProjects.filter(p => p.category === 'motion-graphics');
   const shortFormProjects = portfolioProjects.filter(p => p.subCategory === 'short-form');
@@ -27,7 +25,8 @@ export default function CleanPortfolio({ isRevealed = true }) {
 
   const handleProjectClick = (project) => {
     if (project.category === 'graphic-design') {
-      setSelectedBehance(project);
+      const url = project.behanceUrl || (project.embedUrl ? project.embedUrl.replace('/embed/project/', '/gallery/') : externalArchives.graphicDesignBehanceUrl);
+      window.open(url, '_blank', 'noopener,noreferrer');
     } else if (project.category === 'vibe-coding' && project.url) {
       setSelectedWeb({
         id: project.id,
@@ -88,7 +87,7 @@ export default function CleanPortfolio({ isRevealed = true }) {
 
           {/* Top Category Badge */}
           <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-950/80 border border-slate-800 text-[10px] font-mono text-cyan-400 backdrop-blur-md">
-            <span>{isBehance ? 'Behance Design' : isMotion ? '3D Motion' : isShortForm ? 'Short-Form Video' : 'Ed-Tech Video'}</span>
+            <span>{isBehance ? 'Behance Design ↗' : isMotion ? '3D Motion' : isShortForm ? 'Short-Form Video' : 'Ed-Tech Video'}</span>
           </div>
 
           {/* Client Tag */}
@@ -386,18 +385,11 @@ export default function CleanPortfolio({ isRevealed = true }) {
 
       </div>
 
-      {/* Dynamic Video Lightbox Modal */}
+      {/* Dynamic Video Lightbox Modal (For Videos & Motion) */}
       <VideoModal
         project={selectedVideo}
         isOpen={Boolean(selectedVideo)}
         onClose={() => setSelectedVideo(null)}
-      />
-
-      {/* Dynamic Behance Graphic Lightbox Modal */}
-      <BehanceModal
-        project={selectedBehance}
-        isOpen={Boolean(selectedBehance)}
-        onClose={() => setSelectedBehance(null)}
       />
 
       {/* Dynamic Web App Preview Modal */}

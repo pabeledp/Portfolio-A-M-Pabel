@@ -361,10 +361,10 @@ export const motionGraphicsVideos = [
 
 export const shortFormVideos = [
   {
-    id: "sf-rethink-science-1",
+    id: "sf-rethink-science",
     fileId: "1l0agSl6HCRPRDKy-jutVci0-C3jkaaYW",
-    title: "SSC 27 Revision Programme RRP 1.0 & 2.0 Promo (Science)",
-    subjectTag: "reThink.ac • SSC 27 Science Reel",
+    title: "Revision Programme RRP 1.0 & 2.0 Promo (Science)",
+    subjectTag: "reThink.ac • SSC 27 Science",
     category: "video-editing",
     subCategory: "short-form",
     thumbnail: "https://drive.google.com/thumbnail?id=1l0agSl6HCRPRDKy-jutVci0-C3jkaaYW&sz=w1000",
@@ -375,16 +375,16 @@ export const shortFormVideos = [
     year: "2027"
   },
   {
-    id: "sf-rethink-science-2",
+    id: "sf-rethink-commerce",
     fileId: "1ghgABxz6BkN8L43Bxkw326tj5RHDwzAG",
-    title: "SSC 27 Revision Programme RRP 1.0 & 2.0 Promo 02 (Science)",
-    subjectTag: "reThink.ac • SSC 27 Science Reel",
+    title: "Revision Programme RRP 1.0 & 2.0 Promo (Commerce)",
+    subjectTag: "reThink.ac • SSC 27 Commerce",
     category: "video-editing",
     subCategory: "short-form",
     thumbnail: "https://drive.google.com/thumbnail?id=1ghgABxz6BkN8L43Bxkw326tj5RHDwzAG&sz=w1000",
     embedUrl: "https://drive.google.com/file/d/1ghgABxz6BkN8L43Bxkw326tj5RHDwzAG/preview",
-    description: "High-energy short-form promo reel highlighting SSC 27 Revision Programme RRP 1.0 & 2.0 for Science stream.",
-    tags: ["Short-Form Video", "SSC 27 Science", "Revision Promo"],
+    description: "High-energy short-form promo reel highlighting SSC 27 Revision Programme RRP 1.0 & 2.0 for Commerce stream.",
+    tags: ["Short-Form Video", "SSC 27 Commerce", "Revision Promo"],
     client: "reThink.ac",
     year: "2027"
   },
