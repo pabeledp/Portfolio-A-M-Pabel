@@ -26,6 +26,19 @@ export const externalArchives = {
 
 export const edTechVideos = [
   {
+    id: "v-rethink-class8-scholarship",
+    fileId: "1jwyNsHmbcKRlZIY9W3XDmWAN6FpGI-76",
+    title: "বার্ষিক ও বৃত্তি পরীক্ষা ২০২৬ Promo Video",
+    subjectTag: "reThink.ac • Class 08",
+    category: "video-editing",
+    thumbnail: "https://drive.google.com/thumbnail?id=1jwyNsHmbcKRlZIY9W3XDmWAN6FpGI-76&sz=w1000",
+    embedUrl: "https://drive.google.com/file/d/1jwyNsHmbcKRlZIY9W3XDmWAN6FpGI-76/preview",
+    description: "Commercial educational promo video for Class 08 Annual & Scholarship Exam 2026 by reThink.ac.",
+    tags: ["Class 08", "বৃত্তি পরীক্ষা", "Promo Video", "Ed-Tech"],
+    client: "reThink.ac",
+    year: "2026"
+  },
+  {
     id: "v-edubd-1",
     fileId: "14QRpIKj6x-TLc6Ak_AEe_cYMKm_7tGhd",
     title: "Study in Finland Video-01",
